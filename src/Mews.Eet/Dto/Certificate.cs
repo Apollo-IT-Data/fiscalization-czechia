@@ -49,7 +49,7 @@ namespace Mews.Eet.Dto
                     continue;
                 }
 
-                var key = certificate.PrivateKey as RSACryptoServiceProvider;
+                var key = certificate.GetRSAPrivateKey();
                 var exportParameters = key.ExportParameters(includePrivateParameters: true);
                 var cspParameters = new CspParameters
                 {
