@@ -17,8 +17,8 @@ namespace Mews.Eet.Communication
         public EetSoapClient(Certificate certificate, EetEnvironment environment, TimeSpan httpTimeout, EetLogger logger = null)
         {
             Environment = environment;
-            var subdomain = environment == EetEnvironment.Production ? "prod" : "pg";
-            var endpointUri = new Uri($"https://{subdomain}.eet.cz:443/eet/services/EETServiceSOAP/v3");
+            var subdomain = environment == EetEnvironment.Production ? "" : "pg.";
+            var endpointUri = new Uri($"https://{subdomain}trzbyeet.gov.cz/eet/services/EETServiceSOAP/v4");
             SoapClient = new SoapClient(endpointUri, certificate, httpTimeout, SignAlgorithm.Sha256, logger);
             Logger = logger;
             SoapClient.HttpRequestFinished += (sender, args) => HttpRequestFinished?.Invoke(this, args);
