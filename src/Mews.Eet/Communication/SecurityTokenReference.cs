@@ -16,10 +16,10 @@ namespace Mews.Eet.Communication
         public override XmlElement GetXml()
         {
             var xmlDocument = new XmlDocument();
-            var tokenReferenceElement = xmlDocument.CreateElement("wse", "SecurityTokenReference", "http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd");
+            var tokenReferenceElement = xmlDocument.CreateElement("wsse", "SecurityTokenReference", "http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd");
             xmlDocument.AppendChild(tokenReferenceElement);
 
-            var referenceElement = xmlDocument.CreateElement("wse", "Reference", "http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd");
+            var referenceElement = xmlDocument.CreateElement("wsse", "Reference", "http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd");
             referenceElement.SetAttribute("URI", "#" + BinarySecurityTokenId);
             referenceElement.SetAttribute("ValueType", "http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-x509-token-profile-1.0#X509");
 

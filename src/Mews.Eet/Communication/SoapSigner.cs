@@ -38,11 +38,11 @@ namespace Mews.Eet.Communication
         public XmlDocument SignMessage(XmlDocument xmlDoc)
         {
             var namespaceManager = new XmlNamespaceManager(xmlDoc.NameTable);
-            namespaceManager.AddNamespace("s", "http://schemas.xmlsoap.org/soap/envelope/");
+            namespaceManager.AddNamespace("soapenv", "http://schemas.xmlsoap.org/soap/envelope/");
             namespaceManager.AddNamespace("wsu", "http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd");
 
-            var soapHeaderNode = xmlDoc.DocumentElement.SelectSingleNode("//s:Header", namespaceManager) as XmlElement;
-            var bodyNode = xmlDoc.DocumentElement.SelectSingleNode("//s:Body", namespaceManager) as XmlElement;
+            var soapHeaderNode = xmlDoc.DocumentElement.SelectSingleNode("//soapenv:Header", namespaceManager) as XmlElement;
+            var bodyNode = xmlDoc.DocumentElement.SelectSingleNode("//soapenv:Body", namespaceManager) as XmlElement;
 
             if (bodyNode == null)
             {
@@ -55,7 +55,7 @@ namespace Mews.Eet.Communication
                 namespaceURI: "http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"
             );
 
-            var binarySecurityTokenElement = xmlDoc.CreateElement("wse", "BinarySecurityToken", "http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd");
+            var binarySecurityTokenElement = xmlDoc.CreateElement("wsse", "BinarySecurityToken", "http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd");
             binarySecurityTokenElement.SetAttribute("EncodingType", "http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-soap-message-security-1.0#Base64Binary");
             binarySecurityTokenElement.SetAttribute("ValueType", "http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-x509-token-profile-1.0#X509v3");
             binarySecurityTokenElement.SetAttribute("Id", "http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd", "BinaryToken1");

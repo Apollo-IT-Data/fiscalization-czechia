@@ -29,11 +29,11 @@ namespace Mews.Eet.Communication
         public static SoapMessage FromSoapXml(XmlDocument document)
         {
             var ns = new XmlNamespaceManager(document.NameTable);
-            ns.AddNamespace("s", "http://schemas.xmlsoap.org/soap/envelope/");
+            ns.AddNamespace("soapenv", "http://schemas.xmlsoap.org/soap/envelope/");
 
             return new SoapMessage(
-                new SoapMessagePart(document.DocumentElement.SelectSingleNode("//s:Header", ns) as XmlElement),
-                new SoapMessagePart(document.DocumentElement.SelectSingleNode("//s:Body", ns) as XmlElement)
+                new SoapMessagePart(document.DocumentElement.SelectSingleNode("//soapenv:Header", ns) as XmlElement),
+                new SoapMessagePart(document.DocumentElement.SelectSingleNode("//soapenv:Body", ns) as XmlElement)
             );
         }
 
@@ -42,10 +42,10 @@ namespace Mews.Eet.Communication
             var xmlDocument = new XmlDocument();
             xmlDocument.PreserveWhitespace = true;
 
-            var soapEnvelopeElement = xmlDocument.CreateElement("s", "Envelope", "http://schemas.xmlsoap.org/soap/envelope/");
+            var soapEnvelopeElement = xmlDocument.CreateElement("soapenv", "Envelope", "http://schemas.xmlsoap.org/soap/envelope/");
             soapEnvelopeElement.SetAttribute("xmlns:u", "http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd");
 
-            var soapHeaderElement = xmlDocument.CreateElement("s", "Header", "http://schemas.xmlsoap.org/soap/envelope/");
+            var soapHeaderElement = xmlDocument.CreateElement("soapenv", "Header", "http://schemas.xmlsoap.org/soap/envelope/");
             if (Header != null)
             {
                 var importedHeader = xmlDocument.ImportNode(Header.XmlElement, true);
@@ -53,7 +53,7 @@ namespace Mews.Eet.Communication
             }
             soapEnvelopeElement.AppendChild(soapHeaderElement);
 
-            var soapBodyElement = xmlDocument.CreateElement("s", "Body", "http://schemas.xmlsoap.org/soap/envelope/");
+            var soapBodyElement = xmlDocument.CreateElement("soapenv", "Body", "http://schemas.xmlsoap.org/soap/envelope/");
             soapBodyElement.SetAttribute("Id", "http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd", "_1");
 
             var importedBody = xmlDocument.ImportNode(Body.XmlElement, true);
