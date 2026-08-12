@@ -33,9 +33,9 @@ namespace Mews.Eet.Tests.UnitTests
 
 
         [Fact]
-        public void PremisesIdValidationWorks()
+        public void RegistrationUnitIdValidationWorks()
         {
-            Assert.Throws<ArgumentException>(() => new PremisesIdentifier(0));
+            Assert.Throws<ArgumentException>(() => new RegistrationUnitIdentifier(0));
         }
 
         [Fact]
@@ -62,9 +62,9 @@ namespace Mews.Eet.Tests.UnitTests
 
 
         [Fact]
-        public void PremisesIdWorks()
+        public void RegistrationUnitIdWorks()
         {
-            var ex = Record.Exception(() => new PremisesIdentifier(1));
+            var ex = Record.Exception(() => new RegistrationUnitIdentifier(1));
             Assert.Null(ex);
         }
 

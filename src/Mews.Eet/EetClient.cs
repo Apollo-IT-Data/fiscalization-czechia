@@ -43,7 +43,7 @@ namespace Mews.Eet
             }
             else
             {
-                Logger?.Info($"Got success response from EET servers for bill '{record.BillNumber}'. FIK: '{result.Success.FiscalCode}'.", result);
+                Logger?.Info($"Got success response from EET servers for bill '{record.BillNumber}'. POK: '{result.Success.ConfirmationCode}'.", result);
             }
 
             return result;

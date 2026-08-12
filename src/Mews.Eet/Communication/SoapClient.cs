@@ -35,7 +35,7 @@ namespace Mews.Eet.Communication
 
         private EetLogger Logger { get; }
 
-        public async Task<TOut> SendAsync<TIn, TOut>(TIn messageBodyObject, string operation)
+        public async Task<TOut> SendAsync<TIn, TOut>(TIn messageBodyObject)
             where TIn : class, new()
             where TOut : class, new()
         {
@@ -50,7 +50,7 @@ namespace Mews.Eet.Communication
             var xml = xmlDocument.OuterXml;
             Logger?.Debug("Created signed XML.", new { SoapString = xml });
 
-            var response = await HttpClient.SendAsync(xml, operation).ConfigureAwait(continueOnCapturedContext: false);
+            var response = await HttpClient.SendAsync(xml).ConfigureAwait(continueOnCapturedContext: false);
 
             Logger?.Debug("Received RAW response from EET servers.", new { HttpResponseBody = response });
 

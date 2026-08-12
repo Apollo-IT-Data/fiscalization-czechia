@@ -2,11 +2,11 @@
 {
     public class SendRevenueSuccess
     {
-        public SendRevenueSuccess(string fiscalCode)
+        public SendRevenueSuccess(string confirmationCode)
         {
-            FiscalCode = fiscalCode;
+            ConfirmationCode = confirmationCode;
         }
 
-        public string FiscalCode { get; }
+        public string ConfirmationCode { get; }
     }
 }

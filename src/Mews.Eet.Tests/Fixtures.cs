@@ -9,7 +9,7 @@ namespace Mews.Eet.Tests
         public static TaxPayerFixture First = new TaxPayerFixture
         {
             TaxId = "CZ8551015704",
-            PremisesId = 1,
+            RegistrationUnitId = 202,
             CertificatePassword = "aaaa1111",
             CertificateData = File.ReadAllBytes(GetPath("Data/Certificates/Playground/CA_EET-Playground-CZ8551015704.p12"))
         };
@@ -17,7 +17,7 @@ namespace Mews.Eet.Tests
         public static TaxPayerFixture Second = new TaxPayerFixture
         {
             TaxId = "CZ00000019",
-            PremisesId = 1,
+            RegistrationUnitId = 303,
             CertificatePassword = "aaaa1111",
             CertificateData = File.ReadAllBytes(GetPath("Data/Certificates/Playground/CA_EET-Playground-CZ00000019.p12"))
         };
@@ -25,7 +25,7 @@ namespace Mews.Eet.Tests
         public static TaxPayerFixture Third = new TaxPayerFixture
         {
             TaxId = "CZ683555118",
-            PremisesId = 1,
+            RegistrationUnitId = 101,
             CertificatePassword = "aaaa1111",
             CertificateData = File.ReadAllBytes(GetPath("Data/Certificates/Playground/CA_EET-Playground-CZ683555118.p12"))
         };
@@ -42,7 +42,7 @@ namespace Mews.Eet.Tests
     public class TaxPayerFixture
     {
         public string TaxId { get; set; }
-        public int PremisesId { get; set; }
+        public int RegistrationUnitId { get; set; }
         public string CertificatePassword { get; set; }
         public byte[] CertificateData { get; set; }
     }

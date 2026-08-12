@@ -3,7 +3,7 @@ using System.Xml.Serialization;
 
 namespace Mews.Eet.Dto.Wsdl
 {
-    [XmlRoot(ElementName = "Hlavicka", Namespace = "http://fs.mfcr.cz/eet/schema/v3")]
+    [XmlRoot(ElementName = "Hlavicka", Namespace = "http://fs.gov.cz/eet/schema/v4")]
     public class RevenueHeader
     {
         [XmlAttribute(AttributeName = "uuid_zpravy")]
@@ -17,7 +17,6 @@ namespace Mews.Eet.Dto.Wsdl
 
         [XmlAttribute(AttributeName = "overeni")]
         public bool Verification { get; set; }
-
         [XmlIgnore]
         public bool VerificationSpecified { get; set; }
     }

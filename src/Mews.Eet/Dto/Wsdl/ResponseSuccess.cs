@@ -4,11 +4,11 @@ using System.Xml.Serialization;
 namespace Mews.Eet.Dto.Wsdl
 {
     [Serializable]
-    [XmlType(Namespace = "http://fs.mfcr.cz/eet/schema/v3")]
+    [XmlType(Namespace = "http://fs.gov.cz/eet/schema/v4")]
     public class ResponseSuccess
     {
-        [XmlAttribute(AttributeName = "fik")]
-        public string FiscalCode { get; set; }
+        [XmlAttribute(AttributeName = "pok")]
+        public string ConfirmationCode { get; set; }
 
         [XmlAttribute(AttributeName = "test")]
         public bool IsPlayground { get; set; }

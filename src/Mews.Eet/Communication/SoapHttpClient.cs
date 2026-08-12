@@ -26,10 +26,8 @@ namespace Mews.Eet.Communication
 
         private EetLogger Logger { get; }
 
-        public async Task<string> SendAsync(string body, string operation)
+        public async Task<string> SendAsync(string body)
         {
-            HttpClient.DefaultRequestHeaders.Add("SOAPAction", operation);
-
             var requestContent = new StringContent(body, Encoding.UTF8, "application/x-www-form-urlencoded");
             Logger?.Debug("Starting HTTP request.", new { HttpRequestBody = body });
 

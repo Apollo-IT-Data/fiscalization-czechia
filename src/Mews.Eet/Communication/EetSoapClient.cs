@@ -37,7 +37,7 @@ namespace Mews.Eet.Communication
 
         public async Task<SendRevenueXmlResponse> SendRevenueAsync(SendRevenueXmlMessage message)
         {
-            return await SoapClient.SendAsync<SendRevenueXmlMessage, SendRevenueXmlResponse>(message, operation: "http://fs.mfcr.cz/eet/OdeslaniTrzby").ConfigureAwait(continueOnCapturedContext: false);
+            return await SoapClient.SendAsync<SendRevenueXmlMessage, SendRevenueXmlResponse>(message).ConfigureAwait(continueOnCapturedContext: false);
         }
     }
 }

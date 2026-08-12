@@ -5,17 +5,17 @@ namespace Mews.Eet.Dto
 {
     public class Identification
     {
-        public Identification(TaxIdentifier taxPayerIdentifier, RegistryIdentifier registryIdentifier, PremisesIdentifier premisesIdentifier, Certificate certificate)
-            : this(taxPayerIdentifier, null, registryIdentifier, premisesIdentifier, certificate)
+        public Identification(TaxIdentifier taxPayerIdentifier, RegistryIdentifier registryIdentifier, RegistrationUnitIdentifier registrationUnitIdentifier, Certificate certificate)
+            : this(taxPayerIdentifier, null, registryIdentifier, registrationUnitIdentifier, certificate)
         {
         }
 
-        public Identification(TaxIdentifier taxPayerIdentifier, TaxIdentifier mandatingTaxPayerIdentifier, RegistryIdentifier registryIdentifier, PremisesIdentifier premisesIdentifier, MandationType mandationType, Certificate certificate)
-            : this(mandatingTaxPayerIdentifier, mandationType == Dto.MandationType.Section9Paragraph1 ? taxPayerIdentifier : null, registryIdentifier, premisesIdentifier, certificate, mandationType)
+        public Identification(TaxIdentifier taxPayerIdentifier, TaxIdentifier mandatingTaxPayerIdentifier, RegistryIdentifier registryIdentifier, RegistrationUnitIdentifier registrationUnitIdentifier, MandationType mandationType, Certificate certificate)
+            : this(mandatingTaxPayerIdentifier, mandationType == Dto.MandationType.Section9Paragraph1 ? taxPayerIdentifier : null, registryIdentifier, registrationUnitIdentifier, certificate, mandationType)
         {
         }
 
-        private Identification(TaxIdentifier taxPayerIdentifier, TaxIdentifier mandantingTaxPayerIdentifier, RegistryIdentifier registryIdentifier, PremisesIdentifier premisesIdentifier, Certificate certificate, MandationType? mandationType = null)
+        private Identification(TaxIdentifier taxPayerIdentifier, TaxIdentifier mandantingTaxPayerIdentifier, RegistryIdentifier registryIdentifier, RegistrationUnitIdentifier registrationUnitIdentifier, Certificate certificate, MandationType? mandationType = null)
         {
             if (taxPayerIdentifier == null)
             {
@@ -27,9 +27,9 @@ namespace Mews.Eet.Dto
                 throw new ArgumentException("Registry identifier is required.");
             }
 
-            if (premisesIdentifier == null)
+            if (registrationUnitIdentifier == null)
             {
-                throw new ArgumentException("Premises identifier is required.");
+                throw new ArgumentException("Registration unit identifier is required.");
             }
 
             if (certificate == null)
@@ -40,8 +40,7 @@ namespace Mews.Eet.Dto
             TaxPayerIdentifier = taxPayerIdentifier;
             MandantingTaxPayerIdentifier = mandantingTaxPayerIdentifier;
             RegistryIdentifier = registryIdentifier;
-            PremisesIdentifier = premisesIdentifier;
-            MandationType = mandationType;
+            RegistrationUnitIdentifier = registrationUnitIdentifier;
             Certificate = certificate;
         }
 
@@ -51,9 +50,7 @@ namespace Mews.Eet.Dto
 
         public RegistryIdentifier RegistryIdentifier { get; }
 
-        public PremisesIdentifier PremisesIdentifier { get; }
-
-        public MandationType? MandationType { get; }
+        public RegistrationUnitIdentifier RegistrationUnitIdentifier { get; }
 
         public Certificate Certificate { get; }
     }

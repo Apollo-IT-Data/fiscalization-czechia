@@ -7,10 +7,11 @@ namespace Mews.Eet.Dto
 {
     public class RevenueRecord
     {
-        public RevenueRecord(Identification identification, Revenue revenue, BillNumber billNumber, bool isFirstAttempt = true, EvidenceMode mode = EvidenceMode.Online)
+        public RevenueRecord(Identification identification, Revenue revenue, BillNumber billNumber, bool mandatedByMultipleTaxPayers = false, bool isFirstAttempt = true, EvidenceMode mode = EvidenceMode.Online)
         {
             Identifier = Guid.NewGuid();
             Identification = identification;
+            MandatedByMultipleTaxPayers = mandatedByMultipleTaxPayers;
             Revenue = revenue;
             BillNumber = billNumber;
             IsFirstAttempt = isFirstAttempt;
@@ -22,6 +23,8 @@ namespace Mews.Eet.Dto
         public Guid Identifier { get; }
 
         public Identification Identification { get; }
+
+        public bool MandatedByMultipleTaxPayers { get; }
 
         public Revenue Revenue { get; }
 
@@ -44,7 +47,7 @@ namespace Mews.Eet.Dto
 
         private byte[] GetSignatureBytes()
         {
-            var content = $"{Identification.TaxPayerIdentifier.Value}|{Identification.PremisesIdentifier.Value}|{Identification.RegistryIdentifier.Value}|{BillNumber.Value}|{StringHelpers.FormatForEet(Revenue.Accepted)}|{StringHelpers.FormatForEet(Revenue.Gross.Value)}";
+            var content = $"{Identification.TaxPayerIdentifier.Value}|{Identification.RegistrationUnitIdentifier.Value}|{Identification.RegistryIdentifier.Value}|{BillNumber.Value}|{StringHelpers.FormatForEet(Revenue.Accepted)}|{StringHelpers.FormatForEet(Revenue.Gross.Value)}";
             var hash = SHA256.Create().ComputeHash(Encoding.UTF8.GetBytes(content));
             var formatter = new RSAPKCS1SignatureFormatter(Identification.Certificate.Key);
             formatter.SetHashAlgorithm("SHA256");
