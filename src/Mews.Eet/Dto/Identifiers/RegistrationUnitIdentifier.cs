@@ -3,7 +3,7 @@
     public class RegistrationUnitIdentifier : IntIdentifier
     {
         public RegistrationUnitIdentifier(int value)
-            : base(value, 1, 999999)
+            : base(value, 1, 999999999)
         {
         }
     }
