@@ -5,11 +5,12 @@ EET stands for Elektronická Evidence Tržeb, which is Czech version of Fiscal P
 It's an online API provided by the Ministry of Finance in a form of a SOAP Web Service.
 
 ## Key features
+- Updated for EET 2.0.
 - No Czech abbreviations.
 - Early data validation.
 - Intuitive immutable DTOs.
 - SOAP communication (including WS-Security signing).
-- [PKP](doc/data.md) and [BKP](doc/data.md) security code computation.
+- [PKP](doc/data.md) and [BKP](doc/data.md) security code computation (Unnecessary for EET 2.0).
 - Support for parallel async requests.
 - Logging support
 
@@ -33,7 +34,7 @@ var record = new RevenueRecord(
     identification: new Identification(
         taxPayerIdentifier: new TaxIdentifier("CZ1234567890"),
         registryIdentifier: new RegistryIdentifier("01"),
-        premisesIdentifier: new PremisesIdentifier(1),
+        registrationUnitIdentifier: new RegistrationUnitIdentifier(1),
         certificate: certificate
     ),
     revenue: new Revenue(
@@ -49,7 +50,7 @@ var client = new EetClient(certificate);
 var response = await client.SendRevenueAsync(record);
 if (response.IsSuccess)
 {
-    var fiscalCode = response.Success.FiscalCode;
+    var confirmationCode = response.Success.ConfirmationCode;
 }
 ```
 
