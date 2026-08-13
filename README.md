@@ -10,7 +10,6 @@ It's an online API provided by the Ministry of Finance in a form of a SOAP Web S
 - Early data validation.
 - Intuitive immutable DTOs.
 - SOAP communication (including WS-Security signing).
-- [PKP](doc/data.md) and [BKP](doc/data.md) security code computation (Unnecessary for EET 2.0).
 - Support for parallel async requests.
 - Logging support
 
@@ -42,9 +41,6 @@ var record = new RevenueRecord(
     ),
     billNumber: new BillNumber("2016-321")
 );
-
-var securityCode = record.SecurityCode; // BKP
-var signature = record.Signature; // PKP
 
 var client = new EetClient(certificate);
 var response = await client.SendRevenueAsync(record);
